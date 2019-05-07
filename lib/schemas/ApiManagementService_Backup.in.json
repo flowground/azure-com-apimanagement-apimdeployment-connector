@@ -1,0 +1,52 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters supplied to the Backup/Restore of an API Management service operation.",
+            "properties": {
+                "accessKey": {
+                    "description": "Azure Cloud Storage account (used to place/retrieve the backup) access key.",
+                    "type": "string"
+                },
+                "backupName": {
+                    "description": "The name of the backup file to create.",
+                    "type": "string"
+                },
+                "containerName": {
+                    "description": "Azure Cloud Storage blob container name used to place/retrieve the backup.",
+                    "type": "string"
+                },
+                "storageAccount": {
+                    "description": "Azure Cloud Storage account (used to place/retrieve the backup) name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "storageAccount",
+                "accessKey",
+                "containerName",
+                "backupName"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

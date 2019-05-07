@@ -1,0 +1,57 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters supplied to the Upload SSL certificate for an API Management service operation.",
+            "properties": {
+                "certificate": {
+                    "description": "Base64 Encoded certificate.",
+                    "type": "string"
+                },
+                "certificate_password": {
+                    "description": "Certificate password.",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Hostname type.",
+                    "enum": [
+                        "Proxy",
+                        "Portal",
+                        "Management",
+                        "Scm"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": false,
+                        "name": "HostnameType"
+                    }
+                }
+            },
+            "required": [
+                "type",
+                "certificate",
+                "certificate_password"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

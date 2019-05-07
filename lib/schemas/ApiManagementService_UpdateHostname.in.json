@@ -1,0 +1,104 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "serviceName": {
+            "required": true,
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50,
+            "pattern": "^[a-zA-Z](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Parameters supplied to the UpdateHostname operation.",
+            "properties": {
+                "delete": {
+                    "description": "Hostnames types to delete.",
+                    "items": {
+                        "enum": [
+                            "Proxy",
+                            "Portal",
+                            "Management",
+                            "Scm"
+                        ],
+                        "type": "string",
+                        "x-ms-enum": {
+                            "modelAsString": false,
+                            "name": "HostnameType"
+                        }
+                    },
+                    "type": "array"
+                },
+                "update": {
+                    "description": "Hostnames to create or update.",
+                    "items": {
+                        "description": "Custom hostname configuration.",
+                        "properties": {
+                            "certificate": {
+                                "description": "Certificate information.",
+                                "properties": {
+                                    "expiry": {
+                                        "description": "Expiration date of the certificate. The date conforms to the following format: `yyyy-MM-ddTHH:mm:ssZ` as specified by the ISO 8601 standard.",
+                                        "format": "date-time",
+                                        "type": "string"
+                                    },
+                                    "subject": {
+                                        "description": "Subject of the certificate.",
+                                        "type": "string"
+                                    },
+                                    "thumbprint": {
+                                        "description": "Thumbprint of the certificate.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "expiry",
+                                    "thumbprint",
+                                    "subject"
+                                ],
+                                "type": "object"
+                            },
+                            "hostname": {
+                                "description": "Hostname to configure.",
+                                "type": "string"
+                            },
+                            "type": {
+                                "description": "Hostname type.",
+                                "enum": [
+                                    "Proxy",
+                                    "Portal",
+                                    "Management",
+                                    "Scm"
+                                ],
+                                "type": "string",
+                                "x-ms-enum": {
+                                    "modelAsString": false,
+                                    "name": "HostnameType"
+                                }
+                            }
+                        },
+                        "required": [
+                            "type",
+                            "hostname",
+                            "certificate"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
